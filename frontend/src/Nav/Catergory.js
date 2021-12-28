@@ -1,45 +1,58 @@
-import React,{Component} from 'react';
-import { gql } from '@apollo/client'
-import { Query } from '@apollo/client/react/components'
+import React,{useReducer, useEffect} from 'react';
 import styles from './Catergory.module.css'; 
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import axios from 'axios'
+const intial = {
+  data:[],
+  error:''
+}
 
-const ALL_CATEGORIES = gql`
-{
-    categories {
-      name
-    }
+const reducer = (state, action)=>{
+
+  switch(action.type){
+    case "sucess":
+      return {
+        data: action.data,
+        error:''
+      }
+    case "error":
+      return {
+        data: '',
+        error: action.data
+      }
+    default: 
+    return state
   }
-`
+}
 
-class Catergory extends Component {
-    render() { 
-        return (
 
-        <div className={styles.menu}>
-          <Query
-          query={ALL_CATEGORIES}
-          >
-          {({ loading, error, data }) => {
-                    if (loading) return <p>Loading...</p>
-                    if (error) return <p>Something went wrong...</p>
-                    return (
-                      
-                        <>
-                        {
-                        data.categories.map(elm=><Link to={`/category/${elm.name}`} key={elm.name}> 
-                        <span key={elm.name}>{elm.name} </span> 
-                        </Link> )
-                        }
-                        </>
-                      
-                    )
-                  }}
-          </Query>
-        </div>
+
+const Catergory = () => {
+
+  const [cate, dispatch] = useReducer(reducer, intial)
+
+  useEffect(()=>{
+    axios.get('http://localhost:8002/home/')
+    .then(res => {
+      dispatch({type:'sucess', data: res.data})
+    })
+    .catch(error => {
+      dispatch({type:'error', data: error})
+      console.log(error)
+    })
+
+  },[])
+
+  return ( 
+    <div className={styles.menu}>
+      <div>
+        {cate.error && <h2>Something went wrong</h2>}
+        {cate.data && cate.data.map((elm,ind) => <Link to={`/category/${elm.name}`} key={ind}>{elm.name}</Link>)}
         
-        );
-    }
+      </div>
+
+     
+    </div> );
 }
  
 export default Catergory;
