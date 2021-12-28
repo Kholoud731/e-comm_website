@@ -11,6 +11,32 @@
     bottom: 0px;
     z-index: 1;
     text-transform: capitalize;
+}
+.menu ul{
+    display: flex;
+    position: absolute;
+    
 
 }
+
+.menu ul li{
+    list-style-type: none;
+    display: inline-block;
+    width: fit-content;
+    height: 20px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 120%;
+    text-transform: uppercase;
+    margin-right: 20px;
+    color: #1D1F22;
+}
+
+.menu ul li:hover{
+    color: #5ECE7B;
+    border-bottom: 1px solid #5ECE7B;
+}
+
 

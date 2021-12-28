@@ -43,15 +43,25 @@ const Catergory = () => {
 
   },[])
 
+  const changeColor = (e)=>{
+    // get all the list to make sure we reset the color 
+    const listRest = document.querySelectorAll('ul li')
+    
+    for (let i = 0; i < listRest.length; i++){
+      listRest[i].style.color='#1D1F22'
+      listRest[i].style.borderBottom='none'
+    }
+    // change the color for the trageted element 
+    e.target.style.color='#5ECE7B'
+    e.target.style.borderBottom='1px solid #5ECE7B'
+  }
+
   return ( 
     <div className={styles.menu}>
-      <div>
+   
         {cate.error && <h2>Something went wrong</h2>}
-        {cate.data && cate.data.map((elm,ind) => <Link to={`/category/${elm.name}`} key={ind}>{elm.name}</Link>)}
-        
-      </div>
+        {cate.data && <ul> {cate.data.map((elm,ind) => <Link to={`/category/${elm.name}`} key={ind}> <li onClick={(e)=>changeColor(e)} key={ind}>{elm.name}</li></Link>)}</ul>}
 
-     
     </div> );
 }
  
