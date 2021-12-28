@@ -1,0 +1,46 @@
+.navBar{
+    height: 80px;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: #FFFFFF;
+}
+
+.firstSVG{
+    width:31.18px;
+    height: 38.62px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+}
+.secSVG{
+    width: 27.09px;
+    height: 23.84px;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%,50%);
+
+}
+.tailSVG{
+    width:14.08px;
+    height: 8.99px;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%,0%);
+    z-index: 3;
+}
+.headSVG{
+    width: 5.41px;
+    height: 3.19px;
+    position: absolute;
+    left: 70%;
+    top: -3%;
+    transform: translate(-40%,0%);
+    z-index: 3;
+}
